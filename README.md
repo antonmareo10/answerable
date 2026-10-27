@@ -2,7 +2,7 @@
 
 Answerable turns a scanned or photographed worksheet into a form that a screen reader can read and a keyboard can answer. It is a static site. The text reader (Tesseract.js) runs in the browser, nothing is uploaded, there is no paid API, and after one visit it works with the network off.
 
-Live demo: https://answerable-accessed.vercel.app (see ESTADO notes if the URL differs)
+Live demo: https://answerable-accessed.vercel.app (checked at desktop width and 320 px, scan sample reads and builds all 8 questions)
 
 I built it solo for AccessED Hacks, in the "Interact" door.
 
