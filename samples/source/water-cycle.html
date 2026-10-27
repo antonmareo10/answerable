@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Synthetic worksheet source: The Water Cycle</title>
+<!--
+  Synthetic sample made for Answerable. It is not a real school's worksheet.
+  scripts/make-samples.mjs renders this page to a scan-like JPEG (samples/water-cycle-scan.jpg)
+  and a harder phone-photo-like JPEG (samples/water-cycle-photo.jpg).
+  Query: ?look=scan or ?look=photo
+-->
+<style>
+  html, body { margin: 0; background: #8a8a86; }
+  .stage { width: 1240px; height: 1754px; display: grid; place-items: center; overflow: hidden; position: relative; }
+  .paper {
+    width: 1150px; height: 1660px; background: #f7f5ef; box-sizing: border-box; padding: 70px 90px;
+    font-family: Arial, Helvetica, sans-serif; color: #1d1d1d; font-size: 25px; line-height: 1.45;
+    position: relative;
+  }
+  .look-scan .paper { transform: rotate(-0.7deg); filter: blur(0.45px) contrast(1.05); }
+  .look-photo .stage { background: #6b5f52; }
+  .look-photo .paper { transform: perspective(1600px) rotateX(5deg) rotateZ(1.6deg) scale(0.94); filter: blur(0.9px) contrast(0.92) brightness(0.97); box-shadow: 0 30px 60px rgba(0,0,0,.45); }
+  .look-photo .paper::after { content: ""; position: absolute; inset: 0; background: linear-gradient(115deg, rgba(255,255,255,0) 30%, rgba(60,45,20,.22) 100%); pointer-events: none; }
+  .noise { position: absolute; inset: 0; pointer-events: none; mix-blend-mode: multiply; opacity: .32; }
+  h1 { font-size: 44px; margin: 0 0 4px; }
+  .sub { margin: 0 0 26px; font-size: 23px; }
+  .row { display: flex; gap: 60px; margin-bottom: 22px; }
+  .instr { margin: 0 0 18px; }
+  .bank { border: 2px solid #333; padding: 10px 18px; margin: 0 0 26px; }
+  h2 { font-size: 28px; margin: 26px 0 10px; }
+  ol { margin: 0; padding-left: 0; list-style: none; }
+  li { margin: 0 0 14px; }
+  .opts { margin: 4px 0 0 38px; }
+  .opts div { margin: 2px 0; }
+  .lines div { margin: 6px 0 0 38px; }
+  .figure { display: flex; gap: 30px; align-items: center; margin: 6px 0 6px 38px; }
+  svg.diagram { width: 330px; height: 190px; border: 1px solid #999; background: #fff; }
+</style>
+</head>
+<body>
+<div class="stage" id="stage">
+<div class="paper">
+  <h1>The Water Cycle</h1>
+  <p class="sub">Science, Year 8, Homework 4</p>
+  <div class="row"><span>Name: ____________________</span><span>Date: ______________</span></div>
+  <p class="instr">Read each question carefully. Use the word bank for Part A.</p>
+  <div class="bank">Word bank: evaporation, condensation, precipitation, collection, transpiration</div>
+
+  <h2>Part A: Fill in the blanks</h2>
+  <ol>
+    <li>1. When the sun heats water in oceans and lakes, the water turns into vapour. This is called ______________.</li>
+    <li>2. Water vapour cools high in the sky and forms clouds. This is called ______________.</li>
+    <li>3. Rain, snow, sleet and hail are all kinds of ______________.</li>
+  </ol>
+
+  <h2>Part B: Choose one answer</h2>
+  <ol>
+    <li>4. Where is most of the water on Earth found?
+      <div class="opts"><div>A. Rivers</div><div>B. Oceans</div><div>C. Glaciers</div><div>D. Clouds</div></div></li>
+    <li>5. What gives the water cycle its energy?
+      <div class="opts"><div>A. The Moon</div><div>B. The wind</div><div>C. The Sun</div><div>D. Gravity</div></div></li>
+    <li>6. True or false: Plants release water vapour through their leaves.</li>
+  </ol>
+
+  <h2>Part C: Explain</h2>
+  <ol>
+    <li>7. Describe one way the water cycle affects the weather where you live.
+      <div class="lines"><div>________________________________________________</div><div>________________________________________________</div><div>________________________________________________</div></div></li>
+    <li>8. Look at the diagram. Name the step shown by each arrow.
+      <div class="figure">
+        <svg class="diagram" viewBox="0 0 330 190" aria-hidden="true">
+          <path d="M10 175 L120 70 L190 140 L240 100 L320 175 Z" fill="#cfcfcf" stroke="#333" stroke-width="2"/>
+          <ellipse cx="70" cy="178" rx="55" ry="9" fill="#9cb4c8" stroke="#333"/>
+          <path d="M215 40 a22 22 0 0 1 40 -8 a20 20 0 0 1 35 12 a15 15 0 0 1 -5 28 h-70 a16 16 0 0 1 0 -32z" fill="#fff" stroke="#333" stroke-width="2"/>
+          <path d="M75 165 C 90 100, 150 50, 205 50" fill="none" stroke="#111" stroke-width="2.5" marker-end="url(#a)"/>
+          <path d="M260 78 L 262 150" fill="none" stroke="#111" stroke-width="2.5" stroke-dasharray="6 5" marker-end="url(#a)"/>
+          <text x="120" y="78" font-size="20" font-family="Arial">1</text><text x="270" y="125" font-size="20" font-family="Arial">2</text>
+          <defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#111"/></marker></defs>
+        </svg>
+        <div>Arrow 1: ______________<br><br>Arrow 2: ______________</div>
+      </div></li>
+  </ol>
+</div>
+<svg class="noise" width="1240" height="1754" aria-hidden="true"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>
+</div>
+<script>
+  const look = new URLSearchParams(location.search).get('look') || 'scan';
+  document.documentElement.className = 'look-' + look;
+</script>
+</body>
+</html>

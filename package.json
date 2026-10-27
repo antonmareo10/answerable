@@ -1,0 +1,22 @@
+{
+  "name": "answerable",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Turn a scanned worksheet into one a screen reader can read and answer. Runs in the browser, works offline.",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "start": "node scripts/serve.mjs",
+    "vendor": "node scripts/vendor.mjs",
+    "test": "node tests/run-all.mjs"
+  },
+  "dependencies": {
+    "@fontsource/atkinson-hyperlegible": "5.2.8",
+    "@tesseract.js-data/eng": "1.0.0",
+    "tesseract.js": "7.0.0"
+  },
+  "devDependencies": {
+    "axe-core": "4.11.0",
+    "playwright-core": "1.58.2"
+  }
+}
