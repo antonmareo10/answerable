@@ -23,7 +23,7 @@ Two made-up worksheets (a flatbed scan and a harder phone photo of "The Water Cy
 
 Keyboard only, no mouse: 4 Tab presses to reach the sample button, then 117 key presses to answer all 8 questions (101 of them typed characters), 11 tab stops, then Enter downloads the answers. The exported file contained every answer.
 
-Reading time on this PC: 1.8 s for the scan, 1.4 s for the photo. The first scan downloads the text reader, 7,207,745 bytes. The page itself is 58,364 bytes on first load, so typing or pasting text needs no OCR download.
+Reading time on this PC: 1.8 s for the scan, 1.4 s for the photo. The first scan downloads the text reader, 7,207,745 bytes. The page itself is 59,296 bytes on first load, so typing or pasting text needs no OCR download.
 
 ## What it can and cannot do
 
@@ -42,7 +42,7 @@ Limits I know about: English only; the parser expects numbered questions with A/
 - Keyboard walkthrough: automated with Playwright keyboard events (above). Visible focus outline is 3 px solid.
 - 320 px width: no horizontal scroll (scrollWidth 320 = clientWidth 320). Screenshots in `docs/screenshots/`.
 - Reduced motion: the page has no animation; a reduced-motion rule is also in the CSS.
-- Lighthouse 13.6.0 on the live site, headless Chromium, 31 Oct 2026: see the table below.
+- Lighthouse 13.6.0 on the live site, headless Chromium, 31 Oct 2026: 100 for performance, accessibility, best practices and SEO, on phone and on desktop (first and largest paint 1.0 s on the phone profile, 0.3 s on desktop; the report files are not committed, run `npx lighthouse` to reproduce).
 - Accessibility tree (`tests/a11y-tree.mjs`): the roles, names and live-region announcements Chromium hands to screen readers. 8 named question groups, every control named, a main landmark, and about 6 announcements while reading instead of dozens. This is not a real screen reader.
 - Not done: a real screen reader (NVDA, VoiceOver), testing with learners. Semantic HTML (fieldset and legend per question, labelled inputs, status region) is my best attempt at screen reader support, not a verified result.
 

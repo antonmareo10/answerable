@@ -1,6 +1,6 @@
 // Cache-first service worker. The app shell is cached on install; the text reader files and
 // sample images are cached the first time they are used, so they work offline after that.
-const CACHE = 'answerable-v1';
+const CACHE = 'answerable-v2';
 const SHELL = ['./', 'index.html', 'css/style.css', 'js/app.js', 'js/clean.js', 'js/parse.js', 'js/render.js',
   'manifest.webmanifest', 'vendor/fonts/atkinson-hyperlegible-400.woff2', 'vendor/fonts/atkinson-hyperlegible-700.woff2'];
 

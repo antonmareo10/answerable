@@ -56,7 +56,7 @@ legend { font-weight: 700; padding: 0 0.4rem; max-width: 100%; }
 .needs-picture { background: var(--warn-bg); border-left: 6px solid var(--warn-line); padding: 0.4rem 0.7rem; margin: 0.5rem 0; }
 .figure { border-left: 6px solid var(--accent); padding: 0.2rem 0.7rem; }
 details { margin: 0.75rem 0; }
-summary { cursor: pointer; font-weight: 700; min-height: 2.75rem; display: flex; align-items: center; }
+summary { cursor: pointer; font-weight: 700; min-height: 2.75rem; padding: 0.55rem 0; box-sizing: border-box; }
 img { max-width: 100%; height: auto; border: 1px solid var(--line); }
 footer { margin: 2rem 0 1rem; color: var(--muted); font-size: 0.9rem; }
 
