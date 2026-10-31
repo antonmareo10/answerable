@@ -42,7 +42,9 @@ Limits I know about: English only; the parser expects numbered questions with A/
 - Keyboard walkthrough: automated with Playwright keyboard events (above). Visible focus outline is 3 px solid.
 - 320 px width: no horizontal scroll (scrollWidth 320 = clientWidth 320). Screenshots in `docs/screenshots/`.
 - Reduced motion: the page has no animation; a reduced-motion rule is also in the CSS.
-- Not done: Lighthouse, a real screen reader (NVDA, VoiceOver), testing with learners. Semantic HTML (fieldset and legend per question, labelled inputs, status region) is my best attempt at screen reader support, not a verified result.
+- Lighthouse 13.6.0 on the live site, headless Chromium, 31 Oct 2026: see the table below.
+- Accessibility tree (`tests/a11y-tree.mjs`): the roles, names and live-region announcements Chromium hands to screen readers. 8 named question groups, every control named, a main landmark, and about 6 announcements while reading instead of dozens. This is not a real screen reader.
+- Not done: a real screen reader (NVDA, VoiceOver), testing with learners. Semantic HTML (fieldset and legend per question, labelled inputs, status region) is my best attempt at screen reader support, not a verified result.
 
 ## Run it
 

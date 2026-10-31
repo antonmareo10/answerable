@@ -59,9 +59,15 @@ async function fromImage(blob, label) {
   const t0 = performance.now();
   try {
     const { recognize } = await import('./ocr.js');
+    // The status is a polite live region: a screen reader would read every update aloud, so announce
+    // the setup once and the progress only at 25 percent steps.
+    let prepared = false;
+    let lastQuarter = -1;
     const { text, confidence } = await recognize(blob, (m) => {
-      if (m.status === 'recognizing text') say(`Reading ${label}: ${Math.round(m.progress * 100)} percent.`);
-      else if (m.status) say(`Preparing the text reader: ${m.status}.`);
+      if (m.status === 'recognizing text') {
+        const quarter = Math.floor(m.progress * 4);
+        if (quarter > lastQuarter && quarter < 4) { lastQuarter = quarter; say(`Reading ${label}: ${quarter * 25} percent.`); }
+      } else if (m.status && !prepared) { prepared = true; say('Preparing the text reader. The first time this downloads about 7 MB.'); }
     });
     const cleaned = cleanOcr(text);
     $('text').value = cleaned.text;
