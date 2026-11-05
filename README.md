@@ -25,7 +25,7 @@ Two made-up worksheets (a flatbed scan and a harder phone photo of "The Water Cy
 
 Keyboard only, no mouse: 4 Tab presses to reach the sample button, then 117 key presses to answer all 8 questions (101 of them typed characters), 11 tab stops, then Enter downloads the answers. The exported file contained every answer.
 
-Reading time on this PC: 1.8 s for the scan, 1.4 s for the photo. The first scan downloads the text reader, 7,207,745 bytes. The page itself is 73,239 bytes on first load (59,296 before the 5 Nov start-screen update, which added a 9 KB sample thumbnail and the icon), so typing or pasting text needs no OCR download.
+Reading time on this PC: 1.8 s for the scan, 1.4 s for the photo. The first scan downloads the text reader, 7,207,745 bytes. The page itself is 73,266 bytes on first load (59,296 before the 5 Nov start-screen update, which added a 9 KB sample thumbnail and the icon), so typing or pasting text needs no OCR download.
 
 ## What it can and cannot do
 
