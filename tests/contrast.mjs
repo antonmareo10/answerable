@@ -5,7 +5,7 @@ const light = { bg: '#fbfaf7', fg: '#1a1a1a', muted: '#4a4a4a', card: '#ffffff',
 const dark = { bg: '#121212', fg: '#f2f2f2', muted: '#c4c4c4', card: '#1c1c1c', line: '#9a9a9a', accent: '#8cc4ff', accentFg: '#0a0a0a', focus: '#ffb3d9', warnBg: '#3a3000', warnLine: '#ffd666' };
 let worst = 99;
 for (const [name, t] of [['light', light], ['dark', dark]]) {
-  const pairs = [['text on page', t.fg, t.bg], ['text on card', t.fg, t.card], ['muted on card', t.muted, t.card], ['muted on page', t.muted, t.bg], ['link on card', t.accent, t.card], ['button text', t.accentFg, t.accent], ['focus ring on card', t.focus, t.card], ['focus ring on page', t.focus, t.bg], ['input border on card', t.line, t.card], ['text on warning', t.fg, t.warnBg]];
+  const pairs = [['text on page', t.fg, t.bg], ['text on card', t.fg, t.card], ['muted on card', t.muted, t.card], ['muted on page', t.muted, t.bg], ['link on card', t.accent, t.card], ['button text', t.accentFg, t.accent], ['focus ring on card', t.focus, t.card], ['focus ring on page', t.focus, t.bg], ['input border on card', t.line, t.card], ['text on warning', t.fg, t.warnBg], ['"Before" label on card', t.warnLine, t.card]];
   for (const [label, a, b] of pairs) { const r = ratio(a, b); worst = Math.min(worst, r); console.log(name.padEnd(5), label.padEnd(22), r.toFixed(2)); }
 }
 console.log('lowest ratio', worst.toFixed(2));
