@@ -4,6 +4,21 @@ import { renderWorksheet, collectAnswers } from './render.js';
 
 const $ = (id) => document.getElementById(id);
 const status = $('status');
+// The status box sticks to the top of the screen. Its height goes into --status-h, which the page's
+// scroll-padding uses so the box never covers the control that has keyboard focus (WCAG 2.2, 2.4.11).
+const syncStatusHeight = () => document.documentElement.style.setProperty('--status-h', `${status.offsetHeight}px`);
+if ('ResizeObserver' in window) new ResizeObserver(syncStatusHeight).observe(status);
+syncStatusHeight();
+// Fallback for keyboard focus moves the browser does not scroll for (a tall box already half on screen).
+let byPointer = false;
+document.addEventListener('pointerdown', () => { byPointer = true; }, true);
+document.addEventListener('keydown', () => { byPointer = false; }, true);
+document.addEventListener('focusin', (e) => {
+  const t = e.target;
+  if (byPointer || !(t instanceof HTMLElement) || !(status.compareDocumentPosition(t) & Node.DOCUMENT_POSITION_FOLLOWING)) return;
+  const gap = t.getBoundingClientRect().top - (status.getBoundingClientRect().bottom + 8);
+  if (gap < 0) window.scrollBy(0, gap);
+});
 let ws = null;
 let imageUrl = null;
 

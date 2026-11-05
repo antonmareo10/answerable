@@ -7,15 +7,38 @@
 <meta name="description" content="Turn a scanned or photographed worksheet into a form a screen reader can read and answer. Runs in your browser, works offline.">
 <meta name="color-scheme" content="light dark">
 <link rel="stylesheet" href="css/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%276%27 fill=%27%230b4f8a%27/%3E%3Cpath d=%27M9 17l5 5 9-12%27 fill=%27none%27 stroke=%27%23fff%27 stroke-width=%273.5%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E">
+<link rel="preload" href="vendor/fonts/atkinson-hyperlegible-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="vendor/fonts/atkinson-hyperlegible-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
 <link rel="manifest" href="manifest.webmanifest">
 </head>
 <body>
 <a class="skip" href="#main">Skip to the main content</a>
 <header>
-  <h1>Answerable</h1>
-  <p class="lede">A worksheet that arrives as a picture cannot be read by a screen reader and has no place to type. This page reads the picture on your device and turns it into a form you can move through with the keyboard and answer.</p>
-  <p class="small">Nothing is uploaded. No account. The text reader runs inside your browser.</p>
+  <h1 class="brand"><svg class="mark" viewBox="0 0 32 32" width="40" height="40" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="#0b4f8a"/><path d="M8.5 5h10.5l5.5 5.5V27h-16z" fill="#fff"/><path d="M19 5v5.5h5.5z" fill="#9cc3e8"/><path d="M11.75 18.25l3 3 6-7.25" fill="none" stroke="#0b4f8a" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"/></svg>Answerable</h1>
+  <p class="lede">A worksheet photo becomes a form you can answer with a screen reader and the keyboard.</p>
+  <p class="intro">For learners who get homework as a photo or a scan. It runs in your browser and uploads nothing.</p>
+
+  <section class="ba" aria-labelledby="ba-h">
+    <h2 id="ba-h" class="eyebrow">What a screen reader finds</h2>
+    <div class="ba-pair">
+      <figure class="ba-card">
+        <img src="samples/before-thumb.webp" width="740" height="324" alt="A phone photo of a printed worksheet called The Water Cycle.">
+        <figcaption><span class="ba-label">Before</span> My sample photo: 0 words, 0 headings, 0 places to type.</figcaption>
+      </figure>
+      <span class="ba-arrow" aria-hidden="true">&rarr;</span>
+      <figure class="ba-card">
+        <div class="mock" aria-hidden="true">
+          <div class="mock-q"><span class="qnum">Question 4.</span> Where is most of the water on Earth found?</div>
+          <div class="mock-o"><span class="dot"></span>A. Rivers</div>
+          <div class="mock-o on"><span class="dot"></span>B. Oceans</div>
+          <div class="mock-o"><span class="dot"></span>C. Glaciers</div>
+        </div>
+        <figcaption><span class="ba-label">After</span> In Answerable: 8 questions, 5 headings, 18 labelled choices and boxes.</figcaption>
+      </figure>
+    </div>
+  </section>
 </header>
 
 <main id="main">

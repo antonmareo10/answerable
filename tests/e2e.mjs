@@ -45,7 +45,7 @@ async function counts(page) {
   });
 }
 
-const browser = await chromium.launch();
+const browser = await chromium.launch({ args: ['--lang=en-US'] }); // English file-picker text in the screenshots
 try {
   // ---- Before: the image alone, as a screen reader meets it
   {
@@ -135,6 +135,22 @@ try {
 
   // Focus visibility: outline on a focused control is not "none"
   results.keyboard.focus_outline = await kb.evaluate(() => { document.getElementById('dl-answers').focus(); const s = getComputedStyle(document.activeElement); return `${s.outlineStyle} ${s.outlineWidth}`; });
+
+  // Focus not obscured (WCAG 2.2, 2.4.11): walking back with Shift+Tab, the sticky status box must not
+  // cover any part of the focused control. Before the fix it hid the question 1 answer box almost entirely.
+  let covered = 0;
+  for (let i = 0; i < 20; i++) {
+    await kb.keyboard.press('Shift+Tab');
+    covered += await kb.evaluate(() => {
+      const a = document.activeElement;
+      if (!a || a === document.body) return 0;
+      const r = a.getBoundingClientRect();
+      const s = document.getElementById('status').getBoundingClientRect();
+      return Math.min(r.bottom, s.bottom) - Math.max(r.top, s.top) > 0 ? 1 : 0;
+    });
+  }
+  results.keyboard.backward_stops_covered_by_status = covered;
+  assert.equal(covered, 0, 'sticky status box covers a focused control');
 
   // ---- 320px, no horizontal scroll
   const small = await browser.newContext({ viewport: { width: 320, height: 640 }, serviceWorkers: 'block' });
