@@ -1,5 +1,7 @@
 # Answerable
 
+A worksheet photo becomes a form you can answer with a screen reader and the keyboard.
+
 Answerable turns a scanned or photographed worksheet into a form that a screen reader can read and a keyboard can answer. It is a static site. The text reader (Tesseract.js) runs in the browser, nothing is uploaded, there is no paid API, and after one visit it works with the network off.
 
 Live demo: https://answerable-accessed.vercel.app (checked at desktop width and 320 px, scan sample reads and builds all 8 questions)
@@ -23,7 +25,7 @@ Two made-up worksheets (a flatbed scan and a harder phone photo of "The Water Cy
 
 Keyboard only, no mouse: 4 Tab presses to reach the sample button, then 117 key presses to answer all 8 questions (101 of them typed characters), 11 tab stops, then Enter downloads the answers. The exported file contained every answer.
 
-Reading time on this PC: 1.8 s for the scan, 1.4 s for the photo. The first scan downloads the text reader, 7,207,745 bytes. The page itself is 59,296 bytes on first load, so typing or pasting text needs no OCR download.
+Reading time on this PC: 1.8 s for the scan, 1.4 s for the photo. The first scan downloads the text reader, 7,207,745 bytes. The page itself is 73,239 bytes on first load (59,296 before the 5 Nov start-screen update, which added a 9 KB sample thumbnail and the icon), so typing or pasting text needs no OCR download.
 
 ## What it can and cannot do
 
@@ -40,9 +42,10 @@ Limits I know about: English only; the parser expects numbered questions with A/
 
 - axe-core 4.11.0 (WCAG 2.0/2.1/2.2 A and AA plus best-practice rules): 0 violations on the start screen, the worksheet in light and dark mode, the answered worksheet, and at 320 px. It marked color-contrast as "needs review" on some nodes, so I computed the ratios myself (`tests/contrast.mjs`): the lowest pair is 5.33:1 (light input border), text is above 15:1.
 - Keyboard walkthrough: automated with Playwright keyboard events (above). Visible focus outline is 3 px solid.
+- Focus not obscured (WCAG 2.2, 2.4.11): on 5 Nov I walked the worksheet backwards with Shift+Tab and found the sticky status box hid the focused control, at 1440 px the question 1 answer box was 51 of its 53 px under it. axe does not check this. The status height now feeds `scroll-padding-top`, with a keyboard-only fallback for tall fields, and `tests/e2e.mjs` checks 20 backward stops: 0 covered (the same check fails on the previous commit).
 - 320 px width: no horizontal scroll (scrollWidth 320 = clientWidth 320). Screenshots in `docs/screenshots/`.
 - Reduced motion: the page has no animation; a reduced-motion rule is also in the CSS.
-- Lighthouse 13.6.0 on the live site, headless Chromium, 31 Oct 2026: 100 for performance, accessibility, best practices and SEO, on phone and on desktop (first and largest paint 1.0 s on the phone profile, 0.3 s on desktop; the report files are not committed, run `npx lighthouse` to reproduce).
+- Lighthouse 13.6.0 on the live site, headless Chromium, 31 Oct 2026: 100 for performance, accessibility, best practices and SEO, on phone and on desktop (first and largest paint 1.0 s on the phone profile, 0.3 s on desktop; the report files are not committed, run `npx lighthouse` to reproduce). Again on 5 Nov for the updated start screen, run against the local server: 100 in all four on both profiles, layout shift 0 after preloading the two font files (it was 0.041).
 - Accessibility tree (`tests/a11y-tree.mjs`): the roles, names and live-region announcements Chromium hands to screen readers. 8 named question groups, every control named, a main landmark, and about 6 announcements while reading instead of dozens. This is not a real screen reader.
 - Not done: a real screen reader (NVDA, VoiceOver), testing with learners. Semantic HTML (fieldset and legend per question, labelled inputs, status region) is my best attempt at screen reader support, not a verified result.
 
