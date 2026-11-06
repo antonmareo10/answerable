@@ -49,7 +49,7 @@ function build({ focus = true } = {}) {
   $('step3').hidden = false;
   $('actions').hidden = !nq;
   say(`Worksheet ready: ${nq} questions, ${nc} answer controls${ws.warnings.length ? `, ${ws.warnings.length} thing${ws.warnings.length > 1 ? 's' : ''} to check` : ''}.`);
-  if (focus) $('ws-title').focus();
+  if (focus) (!nq && ws.warnings.length ? $('warn-h') : $('ws-title')).focus();
 }
 
 function showRemoved(removed) {

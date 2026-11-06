@@ -14,10 +14,11 @@ function el(tag, attrs = {}, ...kids) {
 
 const spoken = (text) => text.replace(/____/g, ' (blank) ').replace(/\s+/g, ' ').trim();
 
-function textField(id, label, { multiline = false } = {}) {
+function textField(id, label, { multiline = false, describedBy = '' } = {}) {
   const wrap = el('div', { class: 'field' });
   wrap.append(el('label', { for: id }, label));
-  wrap.append(multiline ? el('textarea', { id, name: id, rows: 5 }) : el('input', { id, name: id, type: 'text', autocomplete: 'off' }));
+  const extra = describedBy ? { 'aria-describedby': describedBy } : {};
+  wrap.append(multiline ? el('textarea', { id, name: id, rows: 5, ...extra }) : el('input', { id, name: id, type: 'text', autocomplete: 'off', ...extra }));
   return wrap;
 }
 
@@ -27,9 +28,12 @@ function questionEl(q) {
 
   if (q.figure) box.append(el('p', { class: 'figure' }, el('strong', {}, 'Picture description: '), q.figure));
   if (q.needsPicture) {
-    box.append(el('p', { class: 'needs-picture', role: 'note' },
+    box.append(el('p', { class: 'needs-picture', role: 'note', id: `q${q.num}-pic` },
       'This question refers to a picture that was not described. A teacher or helper can add a description in step 2.'));
   }
+
+  const opts = q.needsPicture ? { describedBy: `q${q.num}-pic` } : {};
+  if (q.needsPicture && (q.kind === 'choice' || q.kind === 'truefalse')) box.setAttribute('aria-describedby', `q${q.num}-pic`);
 
   if (q.kind === 'choice') {
     const group = el('div', { class: 'choices' });
@@ -49,15 +53,15 @@ function questionEl(q) {
     }
     box.append(group);
   } else if (q.kind === 'multi') {
-    q.parts.forEach((p, i) => box.append(textField(`q${q.num}-p${i + 1}`, `${p}`)));
+    q.parts.forEach((p, i) => box.append(textField(`q${q.num}-p${i + 1}`, `${p}`, opts)));
   } else if (q.kind === 'blank') {
     for (let i = 0; i < Math.max(1, q.blanks); i++) {
-      box.append(textField(`q${q.num}-b${i + 1}`, q.blanks > 1 ? `Blank ${i + 1}` : 'Your answer (the blank)'));
+      box.append(textField(`q${q.num}-b${i + 1}`, q.blanks > 1 ? `Blank ${i + 1}` : 'Your answer (the blank)', opts));
     }
   } else if (q.kind === 'long') {
-    box.append(textField(`q${q.num}-a`, 'Your answer', { multiline: true }));
+    box.append(textField(`q${q.num}-a`, 'Your answer', { multiline: true, ...opts }));
   } else {
-    box.append(textField(`q${q.num}-a`, 'Your answer'));
+    box.append(textField(`q${q.num}-a`, 'Your answer', opts));
   }
   return box;
 }

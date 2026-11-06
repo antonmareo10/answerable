@@ -62,10 +62,10 @@
   <section aria-labelledby="step2-h" class="step" id="step2" hidden>
     <h2 id="step2-h" tabindex="-1">Step 2. Check the text</h2>
     <p id="ocr-note" class="small"></p>
-    <p>Fix anything that was misread. Each question starts with a number and a full stop. Options start with A, B, C. Write ____ for a blank. If a question refers to a picture, add a line under it like [Figure: what the picture shows].</p>
+    <p id="text-hint">Fix anything that was misread. Each question starts with a number and a full stop. Options start with A, B, C. Write ____ for a blank. If a question refers to a picture, add a line under it like [Figure: what the picture shows].</p>
     <div class="field">
       <label for="text">Worksheet text (you can edit it)</label>
-      <textarea id="text" rows="14" spellcheck="false"></textarea>
+      <textarea id="text" rows="14" spellcheck="false" aria-describedby="ocr-note text-hint"></textarea>
     </div>
     <div class="row"><button type="button" id="build">Update the worksheet</button></div>
     <details id="removed" hidden>
@@ -84,7 +84,7 @@
   <section aria-labelledby="step3-h" class="step" id="step3" hidden>
     <h2 id="step3-h">Step 3. Answer the worksheet</h2>
     <div id="warnings-box" class="warn" hidden role="group" aria-labelledby="warn-h">
-      <h3 id="warn-h">Things to check</h3>
+      <h3 id="warn-h" tabindex="-1">Things to check</h3>
       <ul id="warnings"></ul>
     </div>
     <form id="worksheet" aria-labelledby="ws-title" novalidate></form>
